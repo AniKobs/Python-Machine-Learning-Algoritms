@@ -8,7 +8,12 @@ from sklearn.model_selection import train_test_split
 
 
 ######### Read the Data ###############
-data = pd.read_csv("Data.csv") #### Given that the data is a .csv file, also make sure your data is in the same working directory as notebook
+
+#### Given that the data is a .csv file
+#### Also make sure your data is in the same working directory as notebook
+#### We assume the dependent variable of the dataset is categorical(preferably binary)
+
+data = pd.read_csv("Data.csv")
 
 #### We split the data into train and test, with test size being 20 % and train size 80%.
 #### The target is the dependent variable or the class variable.
@@ -31,7 +36,7 @@ y_pred = lr.predict(X_test)
 #### Accuracy is a metric that measures the percentage of correct predictions
 ## made by the model out of the total number of predictions
 #### Precsion measure the accuracy of the positive predictions made by the model
-#### ROC plot is a graphical representation of the performance of a binary classifier system as its discr
+#### ROC plot is a graphical representation of the performance of a binary classifier
 
 lr_acc = accuracy_score(y_test, y_pred)
 lr_prec = precision_score(y_test, y_pred)

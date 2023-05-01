@@ -1,4 +1,4 @@
-# Using sklearn in python, let's build a Decision Tree
+# Using sklearn in python, let's build a Random Forest
 
 import pandas as pd
 import matplotlib.pyplot as plt

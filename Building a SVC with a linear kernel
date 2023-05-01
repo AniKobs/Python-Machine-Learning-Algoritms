@@ -1,0 +1,49 @@
+# Using sklearn in python, let's build a Support Vector Classifier with linear kernel
+
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score, precision_score, roc_curve
+from sklearn.model_selection import train_test_split
+
+
+######### Read the Data ###############
+
+#### Given that the data is a .csv file
+#### Also make sure your data is in the same working directory as notebook
+#### We assume the dependent variable of the dataset is categorical(preferably binary)
+data = pd.read_csv("Data.csv") 
+
+#### We split the data into train and test, with test size being 20 % and train size 80%.
+#### The target is the dependent variable or the class variable.
+#### random state only ensure that the allocated sample for train and test remain the same 
+## even when it is rerun.
+
+X_train, X_test, y_train, y_test = train_test_split(data, data['target'], test_size=0.2, random_state=11)
+
+
+############# Fit SVC ############
+svm = SVC(kernel='linear',probability=True, random_state=12)
+svm.fit(X_train, y_train)
+
+
+############# Predict on test data ###############
+y_pred = svm.predict(X_test)
+
+
+############## Evaluating Logistic Regression ###########
+#### Accuracy is a metric that measures the percentage of correct predictions
+## made by the model out of the total number of predictions
+#### Precsion measure the accuracy of the positive predictions made by the model
+#### ROC plot is a graphical representation of the performance of a binary classifier
+
+svm_acc = accuracy_score(y_test, y_pred)
+svm_prec = precision_score(y_test, y_pred)
+
+## Plot ROC curve
+fpr, tpr, _ = roc_curve(y_test, y_pred)
+plt.plot(fpr, tpr)
+plt.title('ROC Curve')
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.show()

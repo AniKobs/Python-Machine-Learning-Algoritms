@@ -2,7 +2,7 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.linear_model import GaussianNB
+from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score, precision_score, roc_curve
 from sklearn.model_selection import train_test_split
 
@@ -22,7 +22,7 @@ data = pd.read_csv("Data.csv")
 X_train, X_test, y_train, y_test = train_test_split(data, data['target'], test_size=0.2, random_state=05)
 
 
-############# Fit Decision Tree ############
+############# Fit Naive Bayes Classifier ############
 nb= GaussianNB(random_state=06)
 nb.fit(X_train, y_train)
 
